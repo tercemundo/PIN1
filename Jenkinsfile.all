@@ -37,7 +37,7 @@ pipeline {
         steps {
         sh '''
         ## sshpass -p 'MarcianoIA0203!' ssh 192.168.136.128 -l ldgnu -o StrictHostKeyChecking=no "kubectl delete service/testapp deployment.apps/testapp"
-        sshpass -p 'MarcianoIA0203!' ssh 192.168.136.128 -l ldgnu -o StrictHostKeyChecking=no "kubectl create deployment testapp --image=192.168.136.128:5000/mguazzardo/testapp"
+        sshpass -p 'MarcianoIA0203!' ssh 192.168.136.128 -l ldgnu -o StrictHostKeyChecking=no "kubectl create deployment testapp --image=127.0.0.1:5000/mguazzardo/testapp"
        echo "Wait"
        sleep 10
        sshpass -p 'MarcianoIA0203!' ssh 192.168.136.128 -l ldgnu -o StrictHostKeyChecking=no "kubectl expose deployment testapp --port=3000"
