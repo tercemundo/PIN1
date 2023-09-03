@@ -41,7 +41,7 @@ pipeline {
        sleep 10
        sshpass -p 'hTCocF2aubFiGf4vNSfPbKHq2uQ5ggqSRWSXF6i9GLf98YC5B7yaWUA4i6gV9KDcDhZX9Y2fdB4SMU7STxGbhNc6yB4epD8J9' ssh 192.168.100.55 -l ldgnu -o StrictHostKeyChecking=no "microk8s kubectl expose deployment testapp --port=3000"
        sshpass -p 'hTCocF2aubFiGf4vNSfPbKHq2uQ5ggqSRWSXF6i9GLf98YC5B7yaWUA4i6gV9KDcDhZX9Y2fdB4SMU7STxGbhNc6yB4epD8J9' ssh 192.168.100.55 -l ldgnu -o StrictHostKeyChecking=no "wget https://github.com/EducacionMundose/PIN1/blob/master/nodePort.yml"
-       sshpass -p 'hTCocF2aubFiGf4vNSfPbKHq2uQ5ggqSRWSXF6i9GLf98YC5B7yaWUA4i6gV9KDcDhZX9Y2fdB4SMU7STxGbhNc6yB4epD8J9' ssh 192.168.100.55  -l ldgnu -o StrictHostKeyChecking=no "microk8s kubectl apply -f nodePort.yml" 
+       sshpass -p 'hTCocF2aubFiGf4vNSfPbKHq2uQ5ggqSRWSXF6i9GLf98YC5B7yaWUA4i6gV9KDcDhZX9Y2fdB4SMU7STxGbhNc6yB4epD8J9' ssh 192.168.100.55  -l ldgnu -o StrictHostKeyChecking=no "microk8s kubectl apply -f nodePort.yml --validate=false" 
 
            '''
 
