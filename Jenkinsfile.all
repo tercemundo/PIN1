@@ -36,13 +36,13 @@ pipeline {
     stage('Pass To K8s'){
         steps {
         sh '''
-        ## sshpass -p 'hTCocF2aubFiGf4vNSfPbKHq2uQ5ggqSRWSXF6i9GLf98YC5B7yaWUA4i6gV9KDcDhZX9Y2fdB4SMU7STxGbhNc6yB4epD8J9' ssh 192.168.100.55 -l ldgnu -o StrictHostKeyChecking=no "microk8s kubectl delete service/testapp deployment.apps/testapp"
-        sshpass -p 'hTCocF2aubFiGf4vNSfPbKHq2uQ5ggqSRWSXF6i9GLf98YC5B7yaWUA4i6gV9KDcDhZX9Y2fdB4SMU7STxGbhNc6yB4epD8J9' ssh 192.168.100.55 -l ldgnu -o StrictHostKeyChecking=no "microk8s kubectl create deployment testapp --image=192.168.136.128:5000/mguazzardo/testapp"
+        ## sshpass -p 'MarcianoIA0203!' ssh 192.168.136.128 -l ldgnu -o StrictHostKeyChecking=no "kubectl delete service/testapp deployment.apps/testapp"
+        sshpass -p 'MarcianoIA0203!' ssh 192.168.136.128 -l ldgnu -o StrictHostKeyChecking=no "kubectl create deployment testapp --image=192.168.136.128:5000/mguazzardo/testapp"
        echo "Wait"
        sleep 10
-       sshpass -p 'hTCocF2aubFiGf4vNSfPbKHq2uQ5ggqSRWSXF6i9GLf98YC5B7yaWUA4i6gV9KDcDhZX9Y2fdB4SMU7STxGbhNc6yB4epD8J9' ssh 192.168.100.55 -l ldgnu -o StrictHostKeyChecking=no "microk8s kubectl expose deployment testapp --port=3000"
-       sshpass -p 'hTCocF2aubFiGf4vNSfPbKHq2uQ5ggqSRWSXF6i9GLf98YC5B7yaWUA4i6gV9KDcDhZX9Y2fdB4SMU7STxGbhNc6yB4epD8J9' ssh 192.168.100.55 -l ldgnu -o StrictHostKeyChecking=no "wget https://raw.githubusercontent.com/ldgnu/PIN1/master/nodePort.yml"
-       sshpass -p 'hTCocF2aubFiGf4vNSfPbKHq2uQ5ggqSRWSXF6i9GLf98YC5B7yaWUA4i6gV9KDcDhZX9Y2fdB4SMU7STxGbhNc6yB4epD8J9' ssh 192.168.100.55  -l ldgnu -o StrictHostKeyChecking=no "microk8s kubectl apply -f nodePort.yml --validate=false" 
+       sshpass -p 'MarcianoIA0203!' ssh 192.168.136.128 -l ldgnu -o StrictHostKeyChecking=no "kubectl expose deployment testapp --port=3000"
+       sshpass -p 'MarcianoIA0203!' ssh 192.168.136.128 -l ldgnu -o StrictHostKeyChecking=no "wget https://raw.githubusercontent.com/ldgnu/PIN1/master/nodePort.yml"
+       sshpass -p 'MarcianoIA0203!' ssh 192.168.136.128  -l ldgnu -o StrictHostKeyChecking=no "kubectl apply -f nodePort.yml --validate=false" 
 
            '''
 
