@@ -36,12 +36,12 @@ pipeline {
     stage('Pass To K8s'){
         steps {
         sh '''
-        sshpass -p 'MarcianoIA0203!' ssh 192.168.136.128 -l ldgnu -o StrictHostKeyChecking=no "kubectl create deployment testapp --image=127.0.0.1:8082/repository/docker/testapp"
+        sshpass -p 'MarcianoIA0203!' ssh 192.168.136.128 -l ldgnu -o StrictHostKeyChecking=no "microk8s kubectl create deployment testapp --image=127.0.0.1:8082/repository/docker/testapp"
        echo "Wait"
        sleep 10
-       sshpass -p 'MarcianoIA0203!' ssh 192.168.136.128 -l ldgnu -o StrictHostKeyChecking=no "kubectl expose deployment testapp --port=3000"
+       sshpass -p 'MarcianoIA0203!' ssh 192.168.136.128 -l ldgnu -o StrictHostKeyChecking=no "microk8s kubectl expose deployment testapp --port=3000"
        sshpass -p 'MarcianoIA0203!' ssh 192.168.136.128 -l ldgnu -o StrictHostKeyChecking=no "wget https://raw.githubusercontent.com/ldgnu/PIN1/master/nodePort.yml"
-       sshpass -p 'MarcianoIA0203!' ssh 192.168.136.128  -l ldgnu -o StrictHostKeyChecking=no "kubectl apply -f nodePort.yml --validate=false" 
+       sshpass -p 'MarcianoIA0203!' ssh 192.168.136.128  -l ldgnu -o StrictHostKeyChecking=no "microk8s kubectl apply -f nodePort.yml --validate=false" 
 
            '''
 
