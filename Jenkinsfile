@@ -13,6 +13,7 @@ pipeline {
       steps{
           sh '''
           docker build -t testapp .
+          docker run --rm -v cache:/root/.cache/ aquasec/trivy:0.18.3 testapp
              '''  
         }
     }
@@ -27,7 +28,7 @@ pipeline {
       steps{
         sh '''
         docker tag testapp 127.0.0.1:5000/repository/docker/testapp
-        docker push 127.0.0.1:5000/repository/docker/testapp  
+        docker push 127.0.0.1:5000/repository/docker/testapp 
         '''
         }
       }
